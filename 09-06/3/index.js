@@ -1,5 +1,6 @@
 const http = require('http')
 const fs = require('fs')
+const { removeListener } = require('process')
 
 const mime = {
   'html': 'text/html',
@@ -68,7 +69,7 @@ function recuperar(pedido, respuesta) {
   
   pedido.on('end', () => {
     const formulario = new URLSearchParams(info)
-    console.log(formulario)
+    console.log(formulario.toString());
     respuesta.writeHead(200, { 'Content-Type': 'text/html' })
     const pagina =
       `<!doctype html>
@@ -94,23 +95,82 @@ function recuperar(pedido, respuesta) {
 
 //Server Functions END
 function evaluarPrimos(RA, RB){
-  let primocant = 0; let primoArray = [];
-  console.log(RA + ' ' + RB);
-  
-  for (let i=RA; i<RB; i++){ 
+    let primoArray = [];
 
-      for (let j=RA; j*j<=i; j++)
-      {
-          if (i % j == 0) 
-              break;
-          else if (j+1 > Math.sqrt(i)) {
-              console.log(i);
-          }
-
-      }   
+  for(let x = RA; x<RB; x++){
+    if(esPrimo(x)){
+       primoArray.push(x);
+    }
   }
 
+  return descomponerCifras(primoArray)
 
+}
+
+function descomponerCifras(numeros){
+  let primoArrayI = [];
+  let primoArrayD = [];
+  let primoArrayT = [];
+
+  let primoArrayIndex = [];
+  let primoArrayP = [];
+  for(let x in numeros){
+      if(numeros[x] > 9){
+        primoArrayI.push(numeros[x]%10);
+      }
+      if(numeros[x] > 9){
+        primoArrayD.push(Math.floor(numeros[x]/10));
+      }
+  }
+
+  for(let x in primoArrayI){
+    primoArrayT[x] = primoArrayD[x] + primoArrayI[x];
+   // console.log(primoArrayT[x]);
+  }
+  delete primoArrayD, primoArrayI;
+
+  for(let x in primoArrayT){
+    if(esPrimo(primoArrayT[x])){
+        primoArrayP.push(primoArrayT[x]);
+        primoArrayIndex.push(numeros[x]); //
+    }
+  }
+  delete primoArrayT;
+
+  let primoArrayIndex_ = primoArrayIndex.map(function (x) { 
+    return parseInt(x, 10); 
+  });
+  
+
+  
+  return retornarPrimos(primoArrayIndex_, primoArrayP, numeros)
+  
+}
+
+function retornarPrimos(indiceNumerico, sumaNumerica, numeros){
+
+  
+
+  
+    numeros = numeros.filter(numero => indiceNumerico.includes(numero));
  
+   //Arreglar que tiene minimo 10
 
+    return '<br>Numeros<br>' + numeros.join('<br>') + '<br>Su Suma de Cifras<br>'+ sumaNumerica.join(' ');
+  
+
+
+  
+}
+
+function esPrimo(numero) {
+  if (numero == 0 || numero == 1) return 0;
+
+  if (numero == 4) return 0;
+  for (let x = 2; x <numero / 2; x++) {
+    // Si es divisible por cualquiera de estos números, no es primo
+    if (numero % x == 0) return 0;
+  }
+  // Si no se pudo dividir por ninguno de los de arriba, sí es primo
+  return numero;
 }

@@ -108,65 +108,35 @@ function evaluarPrimos(RA, RB){
 }
 
 function descomponerCifras(numeros){
-  let primoArrayI = [];
-  let primoArrayD = [];
-  let primoArrayT = [];
+    let resto, sum, auxCifra;
 
-  let primoArrayIndex = [];
-  let primoArrayP = [];
-  for(let x in numeros){
-      if(numeros[x] > 9){
-        primoArrayI.push(numeros[x]%10);
-      }
-      if(numeros[x] > 9){
-        primoArrayD.push(Math.floor(numeros[x]/10));
-      }
-  }
+    let arrayCifra = [];
 
-  for(let x in primoArrayI){
-    primoArrayT[x] = primoArrayD[x] + primoArrayI[x];
-   // console.log(primoArrayT[x]);
-  }
-  delete primoArrayD, primoArrayI;
+    for(let x in numeros){
+        sum = 0; auxCifra = numeros[x];
 
-  for(let x in primoArrayT){
-    if(esPrimo(primoArrayT[x])){
-        primoArrayP.push(primoArrayT[x]);
-        primoArrayIndex.push(numeros[x]); //
+          do{
+            resto = auxCifra%10;
+            auxCifra = auxCifra/10;
+            auxCifra = Math.trunc(auxCifra);
+            sum = sum + resto;
+          }while(auxCifra != 0)
+
+          if(esPrimo(sum)){
+            arrayCifra.push(numeros[x]);
+          }
     }
-  }
-  delete primoArrayT;
 
-  let primoArrayIndex_ = primoArrayIndex.map(function (x) { 
-    return parseInt(x, 10); 
-  });
-  
-
-  
-  return retornarPrimos(primoArrayIndex_, primoArrayP, numeros)
+    return '<br>Numeros<br>' + arrayCifra.join(' - ')
   
 }
 
-function retornarPrimos(indiceNumerico, sumaNumerica, numeros){
-
-  
-
-  
-    numeros = numeros.filter(numero => indiceNumerico.includes(numero));
- 
-   //Arreglar que tiene minimo 10
-
-    return '<br>Numeros<br>' + numeros.join('<br>') + '<br>Su Suma de Cifras<br>'+ sumaNumerica.join(' ');
-  
-
-
-  
-}
 
 function esPrimo(numero) {
   if (numero == 0 || numero == 1) return 0;
 
   if (numero == 4) return 0;
+  
   for (let x = 2; x <numero / 2; x++) {
     // Si es divisible por cualquiera de estos números, no es primo
     if (numero % x == 0) return 0;

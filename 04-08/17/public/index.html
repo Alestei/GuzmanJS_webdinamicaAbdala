@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- -->
+    <title>Evolucion-AR</title>
+    <link rel="icon" href="common/styles/img/favicon.png" type="image/x-icon" />
+    <!-- Sweet Alerts -->
+    <script src="common/alerts/_SWEETALERT/sweetalert2.min.js"></script>
+    <script src="common/alerts/_SWEETALERT/SWA.js"></script>
+    <link rel="stylesheet" href="common/alerts/_SWEETALERT/sweetalert2.min.css" />    
+    <!-- JS -->
+    <script src="index/js/functions.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="common/styles/css/commonStyle.css" />
+
+    <link rel="stylesheet" href="common/styles/css/bStyle.css" />
+    <link rel="stylesheet" href="index/styles/css/style.css" />
+  </head>
+
+  <body>
+  
+    <div id="header" class="header">
+      <img
+        id="IMGTitle"
+        class="img"
+        style="height: 100px; filter: blur(0px)"
+        src="common/styles/img/logocom_j.png"
+      />
+    </div>
+
+
+   <div id="frame" align="center"><iframe id="pdf" style="display:none" src="index/TDAH.pdf" width="60%" height="450px"></iframe></div>
+
+
+    <div id="boxGames" class="box" style="filter: blur(0px)">
+      <hr class="line" />
+      <div class="buttons" style="text-align: center; display: block">
+        <button id="Game1_b" value="1" class="ashei">Letras</button>
+        <button id="Game2_b" value="2" class="pulse">Frases</button>
+        <button id="Game3_b" value="4" class="raise">Palabras</button>
+        <button id="Game4_b" value="3"  class="up">Sinónimos</button> 
+        <button id="Game5_b" value="5" class="fill">Secuencia</button>
+        <button id="Game6_b" value="6" class="slide">Señalá</button>
+        <button id="Game7_b" value="7" class="offset">Simbolos</button>
+        <button id="Game8_b" value="8" class="raise">Figuras</button>
+        <button id="Game9_b" value="9" class="offset">Fechas</button>
+        <button id="Game10_b" value="10" class="pulse">Identificá</button>
+        <button id="Game11_b" value="11" class="ashei">Parejas</button>
+        <button id="Game12_b" value="12"  class="fill">Operaciones</button> 
+        <!-- Class no utilizados: slide | close -->
+      </div>
+      <hr class="line" />
+      <div class="box" style="top:130%">
+        <button id="DClaimer">Más Información</button> 
+        <button id="DClaimer2">Participantes</button> 
+      </div>
+    </div>
+      
+    
+
+
+    <div id="boxDesc" style="display: none">
+      <table
+        cellspacing="1"
+        style="border-collapse: collapse; width: 95%; height: 100%"
+      >
+        <tr>
+          <td style="width: 50%; height: 100%; text-align: center">
+            <label
+              ><h1 style="font-size: 250%"><b>Como se Juega</b></h1></label
+            >
+            <img id="D_Gif" src="" />
+          </td>
+
+          <td style="width: 50%; height: 100%; text-align: center">
+            <label
+              ><h1 id="D_Title" style="font-size: 250%">
+                <b>TITULO</b>
+              </h1></label
+            >
+            <label><h3 id="D_Desc">DESCRIPCION</h3></label>
+
+            <a id="buttoncontrol1" href=""><button>JUGAR :)</button></a>
+            <button id="buttoncontrol2" onclick="backToR()">
+              Probar otro juego :D
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>

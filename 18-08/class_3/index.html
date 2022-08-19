@@ -24,11 +24,87 @@
         <hr class="my-4">
     </div>
 
-
+        
           <center>
-    
-         
-          </div>
+            <div class="col-2 my-auto">
+            <select class="form-control" id="Usuario">
+              <option value="1">Casas Kevin</option>
+              <option value="2">Artigas Juan Luis</option>
+              <option value="3">Alvarado Lucas</option>
+            </select>
+            <br>
+            <button class="btn btn-default btn-danger btn-block text-uppercase col-3 my-auto" id="setUser" name="snd" 
+            type="submit">SET</button><p></p>
+            </div>
+
+            <div class="col-3 my-auto">
+              
+                <tr>
+                  <td >
+          
+              <label for="NA">Apellido y Nombre</label>
+               <input type="text" id="NA"  class="form-control" placeholder=" " required >
+            
+
+              <label for="Categoria">Categoria</label>
+               <select class="form-control" id="Categoria">
+                 <option value="">-</option>
+                 <option value="107836.17">B2 - Analista Sist. - Senior.</option>
+                 <option value="102245.81">B10 - Des. Mobile - Junior.</option>
+                 <option value="92590.80">B11 - Des. Web - Semi Sr.</option>
+               </select>
+
+               <p></p>
+               <label for="ANT">Antiguedad</label>
+               <input type="text" id="ANT"  class="form-control" placeholder=" " required >  
+
+               <p></p>
+                  </td>
+            <td>
+               <label  class="form-check-label" for="IDI">Idioma/s</label><br>
+                <input class="form-check-input" type="checkbox" value="Ingles" id="IDI">Ingles
+               
+               <p></p>
+               <label for="HCG">Hijos c/Guarderia</label>
+               <input type="number" id="HCG"  class="form-control" placeholder=" " required > 
+
+               <p></p>
+               <label for="Presentismo">Presentismo</label>
+                <select class="form-control" id="Presentismo">
+                  <option>-</option>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+               </td>
+
+               <td>
+                <label for="Funcion">Funcion</label>
+                <select class="form-control" id="Funcion">
+                  <option value="">-</option>
+                  <option value="0">NI</option>
+                  <option value="1">Lider de Equipo</option>
+                  <option value="2">Coordinador de Equipo</option>
+                </select>
+
+
+                <label for="SIND">Pertenece al Sindicato?</label>
+                <select class="form-control" id="SIND">
+                  <option>-</option>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+
+
+                <label for="KM">KM por movilidad propia</label>
+                <input type="number" id="KM"  class="form-control" placeholder=" " required > 
+
+                <label for="ADI">Adicionales</label>
+                <input type="number" id="ADI"  class="form-control" placeholder=" " required > 
+               </td>
+               
+             </div>
+              
+            </table>
           </center>
         
 

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+  <title>VUE - 13</title>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../bootstrap_vue/css/bootstrap.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body background="">
+  
+
+<p></p>
+    <center>
+    <div class="container-fluid bg-gradient py-3 ">
+        <p class="lead">VUE</p>
+        <small class="">Confeccionar un formulario que solicite el ingrese de un nombre y en la parte inferior mostrar un mensaje con el email propuesta a partir del nombre ingresado.
+            Por ejemplo si ingrese: juan se debe mostrar el email propuesto 'juan@totalmail.com'</small>
+        <hr class="my-4">
+    </div>
+
+
+          <center>
+          <div class="col-3 my-auto" id="aplicacion" >
+                <input type="text" v-model="name" placeholder="Su Nombre...">
+                
+                <div v-if="name != '' ">
+                    <br>
+                   <p><h4>Su e-mail: <br> {{returnMail}}</h4></p>
+                </div>
+          </div>
+          </center>
+        
+
+       
+
+<p></p>
+    
+<!--<button class="btn btn-default btn-primary btn-block text-uppercase col-3 my-auto" id="snd" name="snd" type="submit">Efectuar</button>
+-->      
+    
+   
+    </center>
+ 
+
+
+
+<script src="../bootstrap_vue/vue.js"></script>
+<script src="functions.js"></script>
+
+</body>
+</html>

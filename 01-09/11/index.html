@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+  <title>VUE - 11</title>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../bootstrap_vue/css/bootstrap.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body background="">
+  
+
+<p></p>
+    <center>
+    <div class="container-fluid bg-gradient py-3 ">
+        <p class="lead">VUE</p>
+        <small class="">Mostrar un control select diferentes idiomas. Cuando el operador seleccione uno mostrar el mensaje de 'Bienvenido' en el idioma respectivo.</small>
+        <hr class="my-4">
+    </div>
+
+
+          <center>
+          <div class="col-3 my-auto" id="aplicacion" >
+                <select v-model="idiomas">
+                    <option value="Bienvenido">Español</option>
+                    <option value="Welcome">English - Inglés</option>
+                    <option value="Bienvenue'">Francais / Francés</option>
+                    <option value="Herzlich willkommen">Deutsch / Alemán</option>
+                </select>
+                
+                <p><h4>{{idiomas}}</h4></p>
+          </div>
+          </center>
+        
+
+       
+
+<p></p>
+    
+  
+    
+   
+    </center>
+ 
+
+
+
+<script src="../bootstrap_vue/vue.js"></script>
+<script src="functions.js"></script>
+
+</body>
+</html>

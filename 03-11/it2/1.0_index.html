@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="lib/noty.css" rel="stylesheet">
+    <script src="lib/noty.js" type="text/javascript"></script>
+    <link href="css/style.css" rel="stylesheet">
+    
+    <title>Conjugar Verbos</title>
+</head><body background="assets/wp.png" >
+
+
+
+
+    	
+    <div class="bordedrectangle">
+        <center><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Conjugar Verbos</h2></center>
+
+
+    
+    <center>
+    <div class="center" >
+            <br>
+
+            <center>
+                <input type="text" id="verbo" placeholder="Verbo Letra" >
+                <br><br><input type="submit" style="border-radius: 50%;" onClick="analizarCadena()">
+                <h6><i>Posibles Letras: A, F, P</i></h6>
+            </center>
+
+            <br>
+    </div>
+    </center>
+
+
+
+    </div>
+</body>
+
+<script>
+    new Noty({
+        type: 'info',
+        theme: 'metroui',
+        layout: 'center',
+        text: '<b><center>Bienvenido!</b></center> <br>Pagina dise&ntilde;ada por Guzman Alejandro. Por favor, ingrese un verbo de la siguiente forma: <br><br><center>Verbo|Letra.</br></center><br>  <i>Entiendase "|" como un espacio.'
+    }).show();    
+
+    function analizarCadena() {
+        let verbo = document.getElementById('verbo').value;
+        let conj; let posEsp = 0;
+        //
+        for (var i = 0; i < verbo.length; i++) {
+            if (verbo.charAt(i) == ' ') {
+                conj = verbo.charAt(i + 1);
+                posEsp = i;
+            }
+
+        }
+        conj = conj.toUpperCase();
+        verbo = verbo.substring(0, posEsp);
+        
+        let lastl = verbo.substring(verbo.length-2, verbo.length);
+       
+        if(conj != "A" && conj != "P" && conj != "F"){
+            new Noty({
+                type: 'error',
+                layout: 'center',
+                theme: 'metroui',
+                text: 'Conjugacion Incorrecta. Toque este recuadro para reintentar.'
+            }).show();
+        }
+
+        if(lastl == "ar"  || lastl == "ir" || lastl == "er"){
+            if (conj == "A") { YoPresente(verbo); }
+            if (conj == "P") { YoPreterito(verbo); }
+            if (conj == "F") { YoFuturo(verbo); }
+         
+        }else{
+            new Noty({
+                type: 'error',
+                layout: 'center',
+                theme: 'metroui',
+                text: 'Esto no es un verbo. Toque este recuadro para reintentar.'
+            }).show();
+
+        }
+
+    }
+
+    function Notif(Pr,verb,conjg){
+          new Noty({
+            type: 'success',
+            layout: 'center',
+            theme: 'metroui',
+            text: Pr + verb + conjg
+        }).show();;
+    }
+
+ function YoPresente(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        Notif("Yo ",verboTrunc,"o");
+        TuPresente(verbo);
+    }
+
+ function TuPresente(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Tu ", verboTrunc, "as");
+        } else if (lastL == "er") {
+            Notif("Tu ", verboTrunc, "es");
+        } else if (lastL == "ir") {
+            Notif("Tu ", verboTrunc, "es");
+        }
+
+
+        ElPresente(verbo);
+    }
+
+    function ElPresente(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("El ", verboTrunc, "a");
+        } else if (lastL == "er") {
+            Notif("El ", verboTrunc, "e");
+        } else if (lastL == "ir") {
+            Notif("El ", verboTrunc, "e");
+        }
+        NosotrosPresente(verbo);
+
+    }
+
+
+    function NosotrosPresente(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Nosotros ", verboTrunc, "amos");
+        } else if (lastL == "er") {
+            Notif("Nosotros ", verboTrunc, "emos");
+        } else if (lastL == "ir") {
+            Notif("Nosotros ", verboTrunc, "imos");
+        }
+        VosotrosPresente(verbo);
+
+    }
+
+    function VosotrosPresente(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+             Notif("Vosotros ", verboTrunc, "ais");
+        } else if (lastL == "er") {
+             Notif("Vosotros ", verboTrunc, "eis");
+        } else if (lastL == "ir") {
+             Notif("Vosotros ", verboTrunc, "is");
+        }
+
+        EllosPresente(verbo);
+    }
+
+
+    function EllosPresente(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Ellos ", verboTrunc, "an");
+
+        } else if (lastL == "er") {
+            Notif("Ellos ", verboTrunc, "en");
+        } else if (lastL == "ir") {
+            Notif("Ellos ", verboTrunc, "en");
+        }
+
+    
+    }
+
+    //---------------------------------
+    //---------------------------------
+    function YoPreterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+        if (lastL == "ar") {
+            Notif("Yo ", verboTrunc, "e");
+        } else if (lastL == "er") {
+            Notif("Yo ", verboTrunc, "i");
+        } else if (lastL == "ir") {
+            Notif("Yo ", verboTrunc, "i");
+        }
+
+        TuPreterito(verbo);
+    }
+
+    function TuPreterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Tu ", verboTrunc, "aste");
+        } else if (lastL == "er") {
+            Notif("Tu ", verboTrunc, "iste");
+        } else if (lastL == "ir") {
+            Notif("Tu ", verboTrunc, "iste");
+        }
+
+
+        ElPreterito(verbo);
+    }
+
+    function ElPreterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("El ", verboTrunc, "o");
+        } else if (lastL == "er") {
+            Notif("El ", verboTrunc, "io");
+        } else if (lastL == "ir") {
+            Notif("El ", verboTrunc, "o");
+        }
+        NosotrosPreterito(verbo);
+
+    }
+
+
+    function NosotrosPreterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Nosotros ", verboTrunc, "abamos");
+        } else if (lastL == "er") {
+            Notif("Nosotros ", verboTrunc, "iamos");
+        } else if (lastL == "ir") {
+            Notif("Nosotros ", verboTrunc, "iamos");
+        }
+        VosotrosPreterito(verbo);
+
+    }
+
+    function VosotrosPreterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Vosotros ", verboTrunc, "asteis");
+        } else if (lastL == "er") {
+            Notif("Vosotros ", verboTrunc, "asteis");
+        } else if (lastL == "ir") {
+            Notif("Vosotros ", verboTrunc, "asteis");
+        }
+
+        EllosPreterito(verbo);
+    }
+
+
+    function EllosPreterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Ellos ", verboTrunc, "aban");
+        } else if (lastL == "er") {
+            Notif("Ellos ", verboTrunc, "ían");
+        } else if (lastL == "ir") {
+            Notif("Ellos ", verboTrunc, "ían");
+        }
+
+        
+    }
+
+    //---------------------------------
+    //---------------------------------
+    function YoFuturo(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+        if (lastL == "ar") {
+            Notif("Yo ", verboTrunc, "are");
+        } else if (lastL == "er") {
+            Notif("Yo ", verboTrunc, "ere");
+        } else if (lastL == "ir") {
+            Notif("Yo ", verboTrunc, "ire");
+        }
+
+        TuFuturo(verbo);
+    }
+
+    function TuFuturo(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Tú ", verboTrunc, "aras");
+        } else if (lastL == "er") {
+            Notif("Tú ", verboTrunc, "eras");
+        } else if (lastL == "ir") {
+            Notif("Tú ", verboTrunc, "iras");
+        }
+
+
+        ElFuturo(verbo);
+    }
+
+    function ElFuturo(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("El ", verboTrunc, "ara");
+        } else if (lastL == "er") {
+            Notif("El ", verboTrunc, "era");
+        } else if (lastL == "ir") {
+            Notif("El ", verboTrunc, "ira");
+        }
+        NosotrosFuturo(verbo);
+
+    }
+
+
+    function NosotrosFuturo(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Nosotros ", verboTrunc, "aremos");
+        } else if (lastL == "er") {
+            Notif("Nosotros ", verboTrunc, "eremos");
+        } else if (lastL == "ir") {
+            Notif("Nosotros ", verboTrunc, "iremos");
+        }
+        VosotrosFuturo(verbo);
+
+    }
+
+    function VosotrosFuturo(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Vosotros ", verboTrunc, "areis");
+        } else if (lastL == "er") {
+             Notif("Vosotros ", verboTrunc, "eis");
+        } else if (lastL == "ir") {
+             Notif("Vosotros ", verboTrunc, "eis");
+        }
+
+        EllosFuturo(verbo);
+    }
+
+
+    function EllosFuturo(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        if (lastL == "ar") {
+            Notif("Ellos ", verboTrunc, "aran");
+        } else if (lastL == "er") {
+            Notif("Ellos ", verboTrunc, "eran");
+        } else if (lastL == "ir") {
+            Notif("Ellos ", verboTrunc, "iran");
+        }
+
+    }
+
+//---------------------------------
+
+</script>
+
+
+</html>

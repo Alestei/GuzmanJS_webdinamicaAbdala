@@ -1,0 +1,23 @@
+    .bordedrectangle{
+        background-color: rgba(255, 255, 255, 0.377); 
+        border-radius: 15px; 
+        text-align: center; 
+        padding-top: 16%; 
+        padding-bottom: 20.5%;
+
+    }
+
+	.center{
+		background-color: rgba(255, 255, 255, 0.712);
+		border-radius: 25px;
+		width: 20%;
+	}
+	
+	@media screen and (max-width: 480px){
+		.center{
+			width: 50%;
+		
+		}
+	}
+
+

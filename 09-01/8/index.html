@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+  <title>VUE - 8</title>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../bootstrap_vue/css/bootstrap.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body background="">
+  
+
+<p></p>
+    <center>
+    <div class="container-fluid bg-gradient py-3 ">
+        <p class="lead">VUE</p>
+        <small class="">Confeccionar un formulario HTML que solicite la carga de dos valores enteros y luego al presionar un botón de tipo submit proceda a mostrar todos los valores enteros comprendidos entre el primero y el segundo.</small>
+        <hr class="my-4">
+    </div>
+
+
+          <center>
+          <div class="col-3 my-auto" id="aplicacion" >
+            <form v-on:submit.prevent="numberlist">
+                <input type="number" v-model="start" placeholder="Inicio">
+                <input type="number" v-model="end"   placeholder="Fin">
+                <p></p>
+                <div v-if="numeros.length != 0">
+                    <p>Secuencia</p>
+                    <h4 id="pusitai" v-if="numeros.length != 0">{{numeros}}</h4>
+                    <p></p>
+                </div>
+           
+              <button class="btn btn-default btn-primary btn-block text-uppercase col-5 my-auto">Efectuar</button>    
+            </form>
+            
+          </div>
+          </center>
+        
+
+       
+
+<p></p>
+    
+     
+    
+   
+    </center>
+ 
+
+
+
+<script src="../bootstrap_vue/vue.js"></script>
+<script src="functions.js"></script>
+
+</body>
+</html>

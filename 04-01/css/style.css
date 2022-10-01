@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300&display=swap');
+	.centerRectangle{
+	
+		background-color: rgba(0, 0, 0, 0.158);
+		border-radius: 25px;
+		display:flex;
+ 		justify-content: center;
+	}
+	
+	.block {
+		font-family: 'Noto-Sans', sans-serif;
+		src: url('../includes/BIZUDGothic-Regular.ttf');
+		color: white;
+
+		background-image: url('../img/woodSquare.jpg');
+		text-align: center;
+		background-color: white;
+		border-radius: 15px;
+		width: fit-content;
+	
+		padding: 15px;
+		margin-right: 10px;
+		cursor: move;
+	  }
+
+	.styledButton {
+		font-family: 'Noto-Sans', sans-serif;
+		font-size: 15px;
+		color: white;
+		border-radius: 15px;
+		background-color: rgb(0, 0, 0);
+		padding: 10px;
+	}
+
+	@media screen and (max-width: 480px){
+		.centerRectangle{
+			width: 50%;
+		
+		}
+	}
+
+

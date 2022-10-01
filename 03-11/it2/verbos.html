@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="lib/noty.css" rel="stylesheet">
+    <script src="lib/noty.js" type="text/javascript"></script>
+    <link href="css/style.css" rel="stylesheet">
+    
+    <title>Conjugar Verbos</title>
+</head><body background="assets/wp.png" >
+
+
+
+
+    	
+    <div class="bordedrectangle">
+        <center><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Conjugar Verbos</h2></center>
+
+
+    
+    <center>
+    <div class="center" >
+            <br>
+
+            <center>
+                <input type="text" id="verbo" placeholder="Verbo Letra" >
+                <br><br><input type="submit" style="border-radius: 50%;" onClick="analizarCadena()">
+                <h6><i><a onClick="help()">Posibles Letras: A, F, P. <br>Toca aquí para más información</a></i></h6>
+            </center>
+
+            <br>
+    </div>
+    </center>
+
+
+
+    </div>
+</body>
+
+<script>
+    function help(){
+        Notif("<b><center>AYUDA</center></b><ul><li>A refiere al Presente</li> <li>F Refiere al Futuro</li> <li>P Refiere al Preterito Perfecto</li></ul> <b><center><small>Inserte alguna de estas letras, precedida por un verbo. Ejemplo: AMAR P.</center></b></small> <br><center><small>Sitio Web por Guzmán Alejandro, 7°2</center></small>",  "alert", "semanticui", "topRight");
+    }
+
+
+    Notif("Update 2.0-1503 <small><ul><li>Mejoras en el algoritmo.</li> <li>Se mejoró el funcionamiento final al procesarse un conjugado: Ahora se muestra en una sola notificacion.</li></ul> <center><small>Toque este recuadro para continuar</center></small>", "info", "semanticui", "center");
+    function analizarCadena() {
+        let verbo = document.getElementById('verbo').value; verbo = verbo.toLowerCase();
+        let conj; let posEsp = 0;
+        //
+        for (var i = 0; i < verbo.length; i++) {
+            if (verbo.charAt(i) == ' ') {
+                conj = verbo.charAt(i + 1);
+                posEsp = i;
+            }
+
+        }
+
+        conj = conj.toUpperCase();
+        verbo = verbo.substring(0, posEsp);
+        let lastl = verbo.substring(verbo.length-2, verbo.length); lastl = lastl.toUpperCase(); 
+       
+        if(conj != "A" && conj != "P" && conj != "F"){ Notif("Conjugacion Incorrecta. Toque este recuadro para reintentar.", "error", "metroui", "center");}
+
+        if(lastl == "AR"  || lastl == "ER" || lastl == "IR"){
+            switch(conj){
+				case 'A' : Presente(verbo); break;
+				case 'P' : Preterito(verbo); break;
+				case 'F' : Futuro(verbo); break;
+			}
+         
+        }
+            else{
+                  Notif("Esto no es un verbo. Toque este recuadro para reintentar.", "error", "metroui", "center");
+
+            }
+
+    }
+// -------------------------------
+    function Notif(message, NType, NTheme, NLayout){
+            new Noty({
+                type: NType,
+                layout: NLayout,
+                theme: NTheme,
+                text: message.toString()
+            }).show();;
+        
+    }
+
+ //---------------------------------
+    function Presente(verbo){
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+        
+        let PresenteConj = [];
+
+        //Yo
+        PresenteConj.push("<b><center>PRESENTE</center></b>,Yo " + verboTrunc + "o<br>");
+
+        switch(lastL){
+            case 'ar' :
+                PresenteConj.push("Tú " + verboTrunc + "as<br>");
+                PresenteConj.push("El " + verboTrunc + "a<br>");
+                PresenteConj.push("Nosotros " + verboTrunc + "amos<br>");
+                PresenteConj.push("Vosotros " + verboTrunc + "ais<br>");
+                PresenteConj.push("Ellos " + verboTrunc + "an<br>");
+                break;
+
+            case 'er' :
+                PresenteConj.push("Tú " + verboTrunc + "es<br>");
+                PresenteConj.push("El " + verboTrunc + "e<br>");
+                PresenteConj.push("Nosotros " + verboTrunc + "emos<br>");
+                PresenteConj.push("Vosotros " + verboTrunc + "eis<br>");
+                PresenteConj.push("Ellos " + verboTrunc + "en<br>");
+                break;
+
+            case 'ir' :
+                PresenteConj.push("Tú " + verboTrunc + "es<br>");
+                PresenteConj.push("El " + verboTrunc + "e<br>");
+                PresenteConj.push("Nosotros " + verboTrunc + "imos<br>");
+                PresenteConj.push("Vosotros " + verboTrunc + "is<br>");
+                PresenteConj.push("Ellos " + verboTrunc + "en<br>");
+        
+                break;
+        }
+
+        Notif(PresenteConj, "success", "semanticui", "center");
+        
+    }
+//---------------------------------
+    function Preterito(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        let PreteritoConj = [];
+
+        switch (lastL) {
+            case 'ar':
+                PreteritoConj.push("<b><center>PRETERITO PERFECTO</center></b>,Yo " + verboTrunc + "é<br>");
+                PreteritoConj.push("Tu " + verboTrunc + "aste<br>");
+                PreteritoConj.push("El " + verboTrunc + "ó<br>");
+                PreteritoConj.push("Nosotros " + verboTrunc + "ábamos<br>");
+                PreteritoConj.push("Vosotros " + verboTrunc + "asteis<br>");
+                PreteritoConj.push("Ellos " + verboTrunc + "aban<br>");
+                break;
+
+            case 'er':
+                PreteritoConj.push(",Yo " + verboTrunc + "i<br>");
+                PreteritoConj.push("Tu " + verboTrunc + "iste<br>");
+                PreteritoConj.push("El " + verboTrunc + "io<br>");
+                PreteritoConj.push("Nosotros " + verboTrunc + "iamos<br>");
+                PreteritoConj.push("Vosotros " + verboTrunc + "asteis<br>");
+                PreteritoConj.push("Ellos " + verboTrunc + "ian<br>");
+                break;
+
+            case 'ir':
+                PreteritoConj.push(",Yo " + verboTrunc + "i<br>");
+                PreteritoConj.push("Tu " + verboTrunc + "iste<br>");
+                PreteritoConj.push("El " + verboTrunc + "o<br>");
+                PreteritoConj.push("Nosotros " + verboTrunc + "iamos<br>");
+                PreteritoConj.push("Vosotros " + verboTrunc + "asteis<br>");
+                PreteritoConj.push("Ellos " + verboTrunc + "ian<br>");
+
+                break;
+        }
+
+        Notif(PreteritoConj, "success", "semanticui", "center");
+    }
+    //---------------------------------
+    function Futuro(verbo) {
+        let verboTrunc = verbo.substring(0, verbo.length - 2);
+        let lastL = verbo.substring(verbo.length - 2, verbo.length);
+
+        let FuturoConj = [];
+
+        switch (lastL) {
+            case 'ar':
+                FuturoConj.push("<b><center>FUTURO</center></b>,Yo " + verboTrunc + "aré<br>");
+                FuturoConj.push("Tu " + verboTrunc + "arás<br>");
+                FuturoConj.push("El " + verboTrunc + "ará<br>");
+                FuturoConj.push("Nosotros " + verboTrunc + "aremos<br>");
+                FuturoConj.push("Vosotros " + verboTrunc + "areis<br>");
+                FuturoConj.push("Ellos " + verboTrunc + "arán<br>");
+                break;
+
+            case 'er':
+                FuturoConj.push(",Yo " + verboTrunc + "eré<br>");
+                FuturoConj.push("Tu " + verboTrunc + "eras<br>");
+                FuturoConj.push("El " + verboTrunc + "era<br>");
+                FuturoConj.push("Nosotros " + verboTrunc + "eremos<br>");
+                FuturoConj.push("Vosotros " + verboTrunc + "eis<br>");
+                FuturoConj.push("Ellos " + verboTrunc + "eran<br>");
+                break;
+
+            case 'ir':
+                FuturoConj.push(",Yo " + verboTrunc + "ire<br>");
+                FuturoConj.push("Tu " + verboTrunc + "iras<br>");
+                FuturoConj.push("El " + verboTrunc + "ira<br>");
+                FuturoConj.push("Nosotros " + verboTrunc + "iremos<br>");
+                FuturoConj.push("Vosotros " + verboTrunc + "eis<br>");
+                FuturoConj.push("Ellos " + verboTrunc + "iran<br>");
+
+                break;
+        }
+
+        Notif(FuturoConj,  "success", "semanticui", "center");
+    }
+</script>
+
+
+</html>

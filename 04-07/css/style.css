@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300&display=swap');
+
+.body{
+    background-image: url('../style/bg.jpg');
+    font-family: 'Noto-Sans ', sans-serif;
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+}
+
+
+.rec{
+    background-color: rgba(255, 255, 255, 0.158);
+    border-radius: 25px;
+    display:flex;
+    justify-content: center;
+    margin: 15px;
+    
+}
+
+.recOption{
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.insideRecOP{
+    background-color: rgba(255, 255, 255, 0.226);
+    border-radius: 25px;
+    margin-right: 25px;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+
+.insideRecOP2{
+    border-radius: 25px;
+    margin-right: 25px;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+
+
+
+.styledButton {
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 15px;
+        color: white;
+        border-radius: 15px;
+        background-color: rgb(0, 0, 0);
+        padding: 10px;
+}

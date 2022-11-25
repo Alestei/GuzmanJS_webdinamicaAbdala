@@ -1,14 +1,31 @@
+/*
+	Mejoras:	
+		que permita borrar de a uno (el que elija)
+		botones de un solo click o ingresados por teclado
+		mostrar cual era la secuencia
+*/
 
 //Starting
 function gameStart(){
     document.getElementById('start').style="display:none";
     document.getElementById('title').innerHTML = "Ronda <br>" +  cookieReader(gamedata,"round")
     const interval = setInterval(timerNumbers, 1000);
+
     function timerNumbers(){
-        numbers.push(randomizer("numbers"))
+        numbers.push(randomizer("numbers")) 
+        checkArrayFRN(numbers)
+        
+        if(numbers.length != 1 || numbers.length != 0){
+            for(let x in numbers){
+                if(numbers[x] == numbers[x-1]){numbers[x] = randomizer("numbers")}
+                
+            }
+         }
+         
         //console.log(numbers.length-1)
+
         if(numbers.length <= parseInt(cookieReader(gamedata,"nCount"))){
-            document.getElementById("txt").innerHTML = `<h1 style="color:blue; ${boldOrNoBold()}">`+ numbers[numbers.length-1];
+            document.getElementById("txt").innerHTML = `<h1 style="color:green;">`+ numbers[numbers.length-1];
         }else{
             clearInterval(interval); numbers.splice(numbers.length-1, numbers.length)
             document.getElementById('txt').innerHTML = 'Seleccione los numeros en orden';
@@ -30,7 +47,7 @@ document.getElementById('clean').onclick = function(){
     
     const btnList = document.querySelectorAll(".btn");
     for(let x in btnList){
-        btnList[x].style = 'btn';
+        btnList[x].class = 'btn';
     }
 }
 
@@ -60,37 +77,43 @@ document.getElementById('validate').onclick = function(){
         for(let x in uNumbers){
             if(uNumbers[x] == numbers[x]){
                 cAccert+=1;
-                console.log(cAccert)
+              //  console.log(cAccert)
             }
         }
         if(cAccert == numbers.length){
             alert("Ganaste")
             round+=1;
-            gamedata = document.cookie = `name=${name};nCount=${randomizer("numberCount")};round=${round};points=${randomizer("points")}` 
+            gamedata = document.cookie = `name=${name};nCount=${ncount++};round=${round};points=${randomizer("points")}` 
             zamasEverything();
             gameStart()
         }else{
-            zamasEverything();  
+            alert("Perdiste, la secuencia era " + numbers)
+			zamasEverything();  
             round = 1;
             gamedata = document.cookie = `name=${name};nCount=3;round=${round};points=0` 
             gameStart()
-            alert("Perdiste") 
+            
         }
 
     }else{
-        zamasEverything(); 
+        alert("Perdiste, la secuencia era " + numbers)
+		zamasEverything(); 
         round = 1;
         gamedata = document.cookie = `name=${name};nCount=3;round=${round};points=0`  
         gameStart()
-        alert("Perdiste")
+        
     }
 
     
 }
 
 document.getElementById('info').onclick = function(){
+    if(name == ''){name = prompt('¿Cúal es tu nombre?') || "Jugador" }
+    
     alert(`¡Hola ${name}! hasta el momento estás así:
         Ronda : ${cookieReader(gamedata,"round")}
         Puntaje : ${cookieReader(gamedata,"points")}
-    `)
+        ---
+        Versión del Juego : 1.1
+        `)
 }

@@ -1,18 +1,18 @@
 //DATA
-let name = prompt('¿Cúal es tu nombre?') || "Jugador" 
-//let name = "Jugador";
+let name = ""
 let numbers = []
 let uNumbers = []
+
+let ncount = 4
 let round = 1;
 let points = 0;
 let gamedata = document.cookie = `name=${name};nCount=3;round=1;points=0`
 
 // GAME HEART FUNCTIONS
-
 function randomizer(query){
-    if(query == "numbers")    {return Math.floor(Math.random() * (9 - 0) + 0); }
-    if(query == "points")     {return Math.floor(Math.random() * (numbers.length - round) + round )}
-    if(query == "numberCount"){return Math.floor(Math.random() * (9 - 3) + 3); }
+    if(query == "numbers")     {return Math.floor(Math.random() * (9 - 0) + 0); }
+    if(query == "points")      {return Math.floor(Math.random() * (5 - 3) + 3 )}
+//  if(query == "numberCount") {return Math.floor(Math.random() * (9 - 3) + 3); }
 }
 
 function cookieReader(cookie, query){
@@ -29,14 +29,6 @@ function cookieReader(cookie, query){
 }
 
 
-let bf = 0; let bff;
-function boldOrNoBold(){
-    let bold = Math.floor(Math.random()); 
-    if(bold == bff){bold = 1}
-    
-    if(bold == 0 && bf == 0){bf = 1; bff = bold;  return "font-weight:bold" }
-    if(bold == 1 && bf == 1){bf = 0; bff = bold;  return "font-style:italic" }
-}
 
 //NumberPad - npad
 function NPConstruct(){
@@ -49,6 +41,7 @@ function NPConstruct(){
     document.getElementById('npad').style = '';
 }
 
+
 function zamasEverything(){
     document.getElementById('uSelect').innerHTML = ' ';
     document.getElementById('npad').innerHTML = ' ';
@@ -56,4 +49,23 @@ function zamasEverything(){
     document.getElementById('clean').style = 'display:none';
     numbers.length = 0;
     uNumbers.length = 0;
+}
+
+function checkArrayFRN(arr){
+    let iR = true;
+    while(iR == true){
+       if(arr.length != 1 || arr.length != 0){
+            for(let x in arr){
+                if(arr[x] == arr[x-1]){
+                    arr[x] = randomizer("numbers");
+                    console.log(arr)
+                }else{
+                    iR = false;
+                   // console.log(arr)
+                }
+            
+            }
+        }
+   
+    }
 }
